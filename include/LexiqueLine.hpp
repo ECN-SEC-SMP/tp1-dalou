@@ -1,25 +1,23 @@
 #pragma once
 
-#include <iostream>
-#include <string>
 #include <map>
+#include <string>
 
-#define DEBUG
+#include "Lexique.hpp"
 
-class Lexique
+class LexiqueLine : public Lexique
 {
-protected:
-    std::string name;
-    std::map<std::string,int> words_occurences;
+private:
+    std::map<std::string, int> words_line;
 
-protected:
+private:
     /**
      * @brief Remove all undesired char
-     * 
+     *
      * @param input String to clean
      * @return std::string Cleaned string
      */
-    virtual std::string clean_string(std::string input);
+    std::string clean_string(std::string input) override;
 
 public:
     /**
@@ -27,24 +25,16 @@ public:
      * 
      * @param name Name of the lexique
      */
-    Lexique(std::string name);
-    ~Lexique();
-
+    LexiqueLine(std::string name);
+    
     /* Getters */
     /**
-     * @brief Get the occurence of a specific word
+     * @brief Get the line of a specific word
      * 
      * @param word Word to find
-     * @return int Occurence or 0 if does not exist
+     * @return int Line where the word has been seen
      */
-    int get_word_occurence(const std::string word) const;
-    
-    /**
-     * @brief Return the number of unique words in the lexique
-     * 
-     * @return int
-     */
-    int get_unique_words_count() const;
+    int get_word_line(const std::string word) const;
 
     /* Methods */
     /**
@@ -53,7 +43,7 @@ public:
      * 
      * @param input_string Content to be analyzed
      */
-    virtual void load_from_string(const std::string input_string);
+    void load_from_string(const std::string input_string) override;
     
     /**
      * @brief Writes lexique in a text file
@@ -77,7 +67,5 @@ public:
     void delete_word(std::string word);
 
     /* Operator Overloading */
-    friend std::ostream& operator<< (std::ostream& os, const Lexique & obj);
-    void operator+= (const Lexique & obj);
-    void operator-= (const Lexique & obj);
+    friend std::ostream& operator<< (std::ostream& os, const LexiqueLine & obj);
 };
