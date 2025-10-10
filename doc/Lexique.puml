@@ -1,0 +1,26 @@
+@startuml Lexique
+
+class Lexique
+{
+- std::string name
+- std::map<std::string,int> words_occurences
+
+- std::string clean_string(std::string input)
+
++ Lexique(std::string name)
++ ~Lexique();
+
++ int get_word_occurence(const std::string word) const
++ int get_unique_words_count() const
+
++ void load_from_string(const std::string input_string)
++ void save_into_file(const std::string filename)
++ void clear()
++ void delete_word(std::string word)
+
++ friend std::ostream& operator<< (std::ostream& os, const Lexique & obj)
++ void operator += (const Lexique & obj)
++ void operator -= (const Lexique & obj)
+}
+
+@enduml
