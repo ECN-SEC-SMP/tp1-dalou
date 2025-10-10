@@ -28,9 +28,11 @@ std::string Lexique::clean_string(std::string input)
 /* Getters */
 int Lexique::get_word_occurence(const std::string word) const
 {
-    if (!this->words_occurences.contains(word))
+    std::string word_lowered = word;
+    util::to_lower(word_lowered);
+    if (!this->words_occurences.contains(word_lowered))
         return 0;
-    return this->words_occurences.at(word);
+    return this->words_occurences.at(word_lowered);
 }
 
 int Lexique::get_unique_words_count() const
@@ -110,9 +112,9 @@ void Lexique::operator+=(const Lexique &obj)
 
 void Lexique::operator-=(const Lexique &obj)
 {
-    for (auto &&[word, occurence] : this->words_occurences)
+    for (auto &&[word, occurence] : obj.words_occurences)
     {
-        if (obj.get_word_occurence(word) > 0)
+        if (this->get_word_occurence(word) > 0)
         {
             this->delete_word(word);
         }

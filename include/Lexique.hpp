@@ -78,6 +78,6 @@ public:
 
     /* Operator Overloading */
     friend std::ostream& operator<< (std::ostream& os, const Lexique & obj);
-    void operator += (const Lexique & obj);
-    void operator -= (const Lexique & obj);
+    void operator+= (const Lexique & obj);
+    void operator-= (const Lexique & obj);
 };
